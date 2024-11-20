@@ -1,0 +1,24 @@
+/* app.component.scss */
+mat-sidenav-container {
+    height: 100vh;
+  }
+  
+  mat-sidenav {
+    width: 200px;
+    padding: 16px;
+  }
+  
+  .content-wrapper {
+    padding: 20px;
+  }
+  
+  mat-toolbar {
+    button {
+      margin-right: 16px;
+    }
+  }
+  
+  mat-list-item {
+    margin-bottom: 8px;
+  }
+  
