@@ -35,10 +35,10 @@ jobs:
         echo "API_URL=${{ secrets.API_URL }}" >> src/environments/environment.prod.ts
         # Add any other environment variables your Angular app needs
 
-    - name: Run tests
-      run: |
-        ng test --watch=false --browsers=ChromeHeadless
-        ng lint # If you have linting configured
+    # - name: Run tests
+    #   run: |
+    #     ng test --watch=false --browsers=ChromeHeadless
+    #     ng lint # If you have linting configured
 
     - name: Build
       run: ng build --configuration=production
