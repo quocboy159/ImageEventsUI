@@ -1,3 +1,9 @@
+@if (isLoading) {
+<div class="spinner-container">
+  <mat-spinner diameter="50"></mat-spinner>
+</div>
+}
+
 <table mat-table [dataSource]="imageEvents" class="mat-elevation-z8">
   <!-- Image URL Column -->
   <ng-container matColumnDef="imageUrl">
@@ -8,7 +14,7 @@
       }}</a>
     </td>
     <td mat-footer-cell *matFooterCellDef>
-        The number of events in the last hour: {{ imageEvents.length }} items
+      The number of events in the last hour: {{ imageEvents.length }} items
     </td>
   </ng-container>
 
@@ -28,19 +34,15 @@
     <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
 
-    <!-- No Data Message -->
-    <ng-container matColumnDef="noData">
-        <td mat-cell *matCellDef colspan="3">
-          No data available
-        </td>
-      </ng-container>
+  <!-- No Data Message -->
+  <ng-container matColumnDef="noData">
+    <td mat-cell *matCellDef colspan="3">No data available</td>
+  </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
   <tr class="mat-row" *matNoDataRow>
-    <td class="mat-cell no-data-cell" colspan="3">
-      No data available
-    </td>
+    <td class="mat-cell no-data-cell" colspan="3">No data available</td>
   </tr>
 </table>

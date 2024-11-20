@@ -4,12 +4,12 @@ import { ImageEventItem } from '../../models/imageEventItem.model';
 import { DatePipe } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { interval, startWith, Subscription, switchMap } from 'rxjs';
-import {MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-image-event-list',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, DatePipe],
+  imports: [MatTableModule, MatProgressSpinnerModule, DatePipe],
   templateUrl: './image-event-list.component.html',
   styleUrl: './image-event-list.component.css',
 })

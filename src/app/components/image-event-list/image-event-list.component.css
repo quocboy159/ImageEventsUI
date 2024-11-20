@@ -70,3 +70,10 @@ tr.mat-mdc-row:hover {
     font-size: 12px;
   }
 }
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
