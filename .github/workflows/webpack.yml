@@ -1,0 +1,56 @@
+name: Angular CI/CD with Vercel
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: prod
+
+    strategy:
+      matrix:
+        node-version: [20.x] # Angular typically works best with LTS versions
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: |
+        npm install -g @angular/cli
+        npm install
+
+    - name: Set environment variables
+      run: |
+        echo "API_URL=${{ secrets.API_URL }}" >> src/environments/environment.prod.ts
+        # Add any other environment variables your Angular app needs
+
+    - name: Run tests
+      run: |
+        ng test --watch=false --browsers=ChromeHeadless
+        ng lint # If you have linting configured
+
+    - name: Build
+      run: ng build --configuration=production
+
+    - name: Install Vercel CLI
+      run: npm install --global vercel@latest
+
+    - name: Link to Vercel Project
+      run: vercel link --confirm --token=${{ secrets.VERCEL_TOKEN }}
+
+    - name: Deploy to Vercel
+      run: |
+        vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
