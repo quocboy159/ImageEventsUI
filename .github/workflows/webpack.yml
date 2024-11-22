@@ -32,7 +32,7 @@ jobs:
 
     - name: Set environment variables
       run: |
-        echo "API_URL=${{ secrets.API_URL }}" >> src/environments/environment.prod.ts
+        echo "apiUrl=${{ secrets.API_URL }}" >> src/environments/environment.prod.ts
         # Add any other environment variables your Angular app needs
 
     # - name: Run tests
